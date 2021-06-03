@@ -410,7 +410,7 @@ void Dar_LibSetup( Dar_Lib_t * p, Vec_Int_t * vOuts, Vec_Int_t * vPrios )
          for ( k = 0; k < p->nSubgr[i]; k++ )
             Dar_LibSetup_rec( p, Dar_LibObj(p, p->pSubgr[i][k]), i, 1 );
          nNodesTotal += p->nNodes[i];
-printf( "Class %3d : Subgraphs = %4d. Nodes = %5d.\n", i, p->nSubgr[i], p->nNodes[i] );
+// printf( "Class %3d : Subgraphs = %4d. Nodes = %5d.\n", i, p->nSubgr[i], p->nNodes[i] );
     }
     assert( nNodesTotal == p->nNodesTotal );
      // prepare the number of the PI nodes

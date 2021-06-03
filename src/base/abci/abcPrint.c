@@ -245,10 +245,10 @@ void Abc_NtkPrintStats( Abc_Ntk_t * pNtk, int fFactored, int fSaveBest, int fDum
         int nMuxs = Abc_NtkCountMuxes(pNtk) - nXors;
         int nAnds = Abc_NtkNodeNum(pNtk) - (nMuxs + nXors) * 3 - nSingles;
         Abc_Print( 1, "XMA stats:  " );
-        Abc_Print( 1,"Xor =%7d (%6.2f %%)  ", nXors, 300.0 * nXors / Abc_NtkNodeNum(pNtk) );
-        Abc_Print( 1,"Mux =%7d (%6.2f %%)  ", nMuxs, 300.0 * nMuxs / Abc_NtkNodeNum(pNtk) );
-        Abc_Print( 1,"And =%7d (%6.2f %%)  ",   nAnds, 100.0 * nAnds / Abc_NtkNodeNum(pNtk) );
-        Abc_Print( 1,"Total =%7d",   nAnds + nXors + nMuxs );
+        Abc_Print( 1,"Xor = %7d (%6.2f %%)  ", nXors, 300.0 * nXors / Abc_NtkNodeNum(pNtk) );
+        Abc_Print( 1,"Mux = %7d (%6.2f %%)  ", nMuxs, 300.0 * nMuxs / Abc_NtkNodeNum(pNtk) );
+        Abc_Print( 1,"And = %7d (%6.2f %%)  ",   nAnds, 100.0 * nAnds / Abc_NtkNodeNum(pNtk) );
+        Abc_Print( 1,"Total = %7d",   nAnds + nXors + nMuxs );
         Abc_Print( 1,"\n" );
         return;
     }
@@ -275,29 +275,29 @@ void Abc_NtkPrintStats( Abc_Ntk_t * pNtk, int fFactored, int fSaveBest, int fDum
 #else
     Abc_Print( 1,"%s%-30s:%s", "\033[1;37m", pNtk->pName, "\033[0m" );  // bright
 #endif
-    Abc_Print( 1," i/o =%5d/%5d", Abc_NtkPiNum(pNtk), Abc_NtkPoNum(pNtk) );
+    Abc_Print( 1," i/o = %5d/%5d", Abc_NtkPiNum(pNtk), Abc_NtkPoNum(pNtk) );
     if ( Abc_NtkConstrNum(pNtk) )
-        Abc_Print( 1,"(c=%d)", Abc_NtkConstrNum(pNtk) );
-    Abc_Print( 1,"  lat =%5d", Abc_NtkLatchNum(pNtk) );
+        Abc_Print( 1,"(c = %d)", Abc_NtkConstrNum(pNtk) );
+    Abc_Print( 1,"  lat = %5d", Abc_NtkLatchNum(pNtk) );
     if ( pNtk->nBarBufs )
-        Abc_Print( 1,"(b=%d)", pNtk->nBarBufs );
+        Abc_Print( 1,"(b = %d)", pNtk->nBarBufs );
     if ( Abc_NtkIsNetlist(pNtk) )
     {
-        Abc_Print( 1,"  net =%5d", Abc_NtkNetNum(pNtk) );
-        Abc_Print( 1,"  nd =%5d",  fSkipSmall ? Abc_NtkGetLargeNodeNum(pNtk) : Abc_NtkNodeNum(pNtk) - nSingles );
-        Abc_Print( 1,"  wbox =%3d", Abc_NtkWhiteboxNum(pNtk) );
-        Abc_Print( 1,"  bbox =%3d", Abc_NtkBlackboxNum(pNtk) );
+        Abc_Print( 1,"  net = %5d", Abc_NtkNetNum(pNtk) );
+        Abc_Print( 1,"  nd = %5d",  fSkipSmall ? Abc_NtkGetLargeNodeNum(pNtk) : Abc_NtkNodeNum(pNtk) - nSingles );
+        Abc_Print( 1,"  wbox = %3d", Abc_NtkWhiteboxNum(pNtk) );
+        Abc_Print( 1,"  bbox = %3d", Abc_NtkBlackboxNum(pNtk) );
     }
     else if ( Abc_NtkIsStrash(pNtk) )
     {
-        Abc_Print( 1,"  and =%7d", Abc_NtkNodeNum(pNtk) );
+        Abc_Print( 1,"  and = %7d", Abc_NtkNodeNum(pNtk) );
         if ( Abc_NtkGetChoiceNum(pNtk) )
             Abc_Print( 1," (choice = %d)", Abc_NtkGetChoiceNum(pNtk) );
     }
     else
     {
-        Abc_Print( 1,"  nd =%6d", fSkipSmall ? Abc_NtkGetLargeNodeNum(pNtk) : Abc_NtkNodeNum(pNtk) - nSingles );
-        Abc_Print( 1,"  edge =%7d", Abc_NtkGetTotalFanins(pNtk) - nSingles );
+        Abc_Print( 1,"  nd = %6d", fSkipSmall ? Abc_NtkGetLargeNodeNum(pNtk) : Abc_NtkNodeNum(pNtk) - nSingles );
+        Abc_Print( 1,"  edge = %7d", Abc_NtkGetTotalFanins(pNtk) - nSingles );
     }
 
     if ( Abc_NtkIsStrash(pNtk) || Abc_NtkIsNetlist(pNtk) )
@@ -306,22 +306,22 @@ void Abc_NtkPrintStats( Abc_Ntk_t * pNtk, int fFactored, int fSaveBest, int fDum
     else if ( Abc_NtkHasSop(pNtk) )
     {
 
-        Abc_Print( 1,"  cube =%6d",  Abc_NtkGetCubeNum(pNtk) - nSingles );
+        Abc_Print( 1,"  cube = %6d",  Abc_NtkGetCubeNum(pNtk) - nSingles );
         if ( fFactored )
-            Abc_Print( 1,"  lit(sop) =%6d",  Abc_NtkGetLitNum(pNtk) - nSingles );
+            Abc_Print( 1,"  lit(sop) = %6d",  Abc_NtkGetLitNum(pNtk) - nSingles );
         if ( fFactored )
-            Abc_Print( 1,"  lit(fac) =%6d",  Abc_NtkGetLitFactNum(pNtk) - nSingles );
+            Abc_Print( 1,"  lit(fac) = %6d",  Abc_NtkGetLitFactNum(pNtk) - nSingles );
     }
     else if ( Abc_NtkHasAig(pNtk) )
-        Abc_Print( 1,"  aig  =%6d",  Abc_NtkGetAigNodeNum(pNtk) - nSingles );
+        Abc_Print( 1,"  aig  = %6d",  Abc_NtkGetAigNodeNum(pNtk) - nSingles );
     else if ( Abc_NtkHasBdd(pNtk) )
-        Abc_Print( 1,"  bdd  =%6d",  Abc_NtkGetBddNodeNum(pNtk) - nSingles );
+        Abc_Print( 1,"  bdd  = %6d",  Abc_NtkGetBddNodeNum(pNtk) - nSingles );
     else if ( Abc_NtkHasMapping(pNtk) )
     {
         int fHasTimeMan = (int)(pNtk->pManTime != NULL);
         assert( pNtk->pManFunc == Abc_FrameReadLibGen() );
-        Abc_Print( 1,"  area =%5.2f", Abc_NtkGetMappedArea(pNtk) );
-        Abc_Print( 1,"  delay =%5.2f", Abc_NtkDelayTrace(pNtk, NULL, NULL, 0) );
+        Abc_Print( 1,"  area = %5.2f", Abc_NtkGetMappedArea(pNtk) );
+        Abc_Print( 1,"  delay = %5.2f", Abc_NtkDelayTrace(pNtk, NULL, NULL, 0) );
         if ( !fHasTimeMan && pNtk->pManTime )
         {
             Abc_ManTimeStop( pNtk->pManTime );
@@ -336,7 +336,7 @@ void Abc_NtkPrintStats( Abc_Ntk_t * pNtk, int fFactored, int fSaveBest, int fDum
     if ( Abc_NtkIsStrash(pNtk) )
     {
         extern int Abc_NtkGetMultiRefNum( Abc_Ntk_t * pNtk );
-        Abc_Print( 1,"  lev =%3d", Abc_AigLevel(pNtk) );
+        Abc_Print( 1,"  lev = %3d", Abc_AigLevel(pNtk) );
 //        Abc_Print( 1,"  ff = %5d", Abc_NtkNodeNum(pNtk) + 2 * (Abc_NtkCoNum(pNtk)+Abc_NtkGetMultiRefNum(pNtk)) );
 //        Abc_Print( 1,"  var = %5d", Abc_NtkCiNum(pNtk) + Abc_NtkCoNum(pNtk)+Abc_NtkGetMultiRefNum(pNtk) );
     }
@@ -345,20 +345,20 @@ void Abc_NtkPrintStats( Abc_Ntk_t * pNtk, int fFactored, int fSaveBest, int fDum
     if ( pNtk->nBarBufs2 )
         Abc_Print( 1,"  buf = %d", pNtk->nBarBufs2 );
     if ( fUseLutLib && Abc_FrameReadLibLut() )
-        Abc_Print( 1,"  delay =%5.2f", Abc_NtkDelayTraceLut(pNtk, 1) );
+        Abc_Print( 1,"  delay = %5.2f", Abc_NtkDelayTraceLut(pNtk, 1) );
     if ( fUseLutLib && Abc_FrameReadLibLut() )
-        Abc_Print( 1,"  area =%5.2f", Abc_NtkGetArea(pNtk) );
+        Abc_Print( 1,"  area = %5.2f", Abc_NtkGetArea(pNtk) );
     if ( fPower )
-        Abc_Print( 1,"  power =%7.2f", Abc_NtkMfsTotalSwitching(pNtk) );
+        Abc_Print( 1,"  power = %7.2f", Abc_NtkMfsTotalSwitching(pNtk) );
     if ( fGlitch )
     {
         if ( Abc_NtkIsLogic(pNtk) && Abc_NtkGetFaninMax(pNtk) <= 6 )
-            Abc_Print( 1,"  glitch =%7.2f %%", Abc_NtkMfsTotalGlitching(pNtk, 4000, 8, 0) );
+            Abc_Print( 1,"  glitch = %7.2f %%", Abc_NtkMfsTotalGlitching(pNtk, 4000, 8, 0) );
         else
             printf( "\nCurrently computes glitching only for K-LUT networks with K <= 6." );
     }
     if ( fPrintMem )
-        Abc_Print( 1,"  mem =%5.2f MB", Abc_NtkMemory(pNtk)/(1<<20) );
+        Abc_Print( 1,"  mem = %5.2f MB", Abc_NtkMemory(pNtk)/(1<<20) );
     Abc_Print( 1,"\n" );
 
     // print the statistic into a file
