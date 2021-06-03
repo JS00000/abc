@@ -154,7 +154,6 @@ char ** Dar_Permutations( int n )
         Array[i] = i;
     Dar_Permutations_rec( pRes, nFact, n, Array );
     // print the permutations
-/*
     {
     int i, k;
     for ( i = 0; i < nFact; i++ )
@@ -165,7 +164,6 @@ char ** Dar_Permutations( int n )
         printf( " }\n" );
     }
     }
-*/
     return pRes;
 }
 

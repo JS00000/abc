@@ -1527,18 +1527,22 @@ Abc_Ntk_t * Abc_NtkDRewrite( Abc_Ntk_t * pNtk, Dar_RwrPar_t * pPars )
         Vec_VecFree( vParts );
     }
 */
+clk = Abc_Clock();
     Dar_ManRewrite( pMan, pPars );
+ABC_PRT( "time Dar_ManRewrite", Abc_Clock() - clk );
 //    pMan = Dar_ManBalance( pTemp = pMan, pPars->fUpdateLevel );
 //    Aig_ManStop( pTemp );
 
 clk = Abc_Clock();
     pMan = Aig_ManDupDfs( pTemp = pMan ); 
     Aig_ManStop( pTemp );
-//ABC_PRT( "time", Abc_Clock() - clk );
+ABC_PRT( "time Aig_ManDupDfs", Abc_Clock() - clk );
 
 //    Aig_ManPrintStats( pMan );
+clk = Abc_Clock();
     pNtkAig = Abc_NtkFromDar( pNtk, pMan );
     Aig_ManStop( pMan );
+ABC_PRT( "time Abc_NtkFromDar", Abc_Clock() - clk );
     return pNtkAig;
 }
 
